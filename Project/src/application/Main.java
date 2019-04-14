@@ -25,9 +25,15 @@ public class Main extends Application {
 				_bikePark bp = new _bikePark();
 				bp.start(primaryStage);
 			});
+			Button extbtn = new Button("Parking Exit");
+			extbtn.setOnAction(e ->{
+				_Exit ext = new _Exit();
+				ext.start(primaryStage);
+			});
 			Scene scene = new Scene(root,800,600);
 			root.addRow(0, car_btn);
 			root.addRow(1, bike_btn);
+			root.addRow(5, extbtn);
 			root.setHgap(10);
 			root.setVgap(20);
 			root.setAlignment(Pos.CENTER);

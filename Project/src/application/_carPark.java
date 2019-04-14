@@ -81,7 +81,6 @@ public class _carPark extends Application{
 				RadioButton rb1 = new RadioButton("C101");
 				rb1.setUserData("C101");
 				rb1.setToggleGroup(group);
-				rb1.setSelected(true);
 
 				RadioButton rb2 = new RadioButton("C102");
 				rb2.setUserData("C102");

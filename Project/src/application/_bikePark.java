@@ -81,7 +81,6 @@ public class _bikePark extends Application{
 				RadioButton rb1 = new RadioButton("B101");
 				rb1.setUserData("B101");
 				rb1.setToggleGroup(group);
-				rb1.setSelected(true);
 
 				RadioButton rb2 = new RadioButton("B102");
 				rb2.setUserData("B102");
