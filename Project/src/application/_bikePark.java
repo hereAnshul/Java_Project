@@ -41,17 +41,19 @@ public class _bikePark extends Application{
 				c.setTextFill(Color.RED);
 				a.setFont(new Font(11));
 				b.setFont(new Font(11));
-				b.setFont(new Font(11));
+				c.setFont(new Font(11));
+				GridPane.setHalignment(c, HPos.CENTER);
 				Button subbtn = new Button("Confirm Spot");
 				subbtn.setOnAction(e -> {
 					nm = name.getText();
 					np = num.getText();
 					System.out.println(nm);
 					System.out.println(np);
-					if(s!=null && nm!=null && np!=null) 
-						dbtest.update(s, "car", nm, np);
+					if(s!=null && nm!=null && np!=null) { 
+						dbtest.update(s, "bike", nm, np);
 						Thank th = new Thank();
 						th.start(primaryStage);
+					}
 					if(nm==null) {
 							a.setText("Add name.");					
 					}if(np==null) {

@@ -4,7 +4,7 @@ import java.sql.*;
 public class dbtest {
 	public static void main(String[] args) {
 		System.out.println("Processing...");
-		update(null, null, null, null);
+		//update(null, null, null, null);
 	}
 	public static void update(String a, String b, String c, String d) {
 		Connection con=null;
@@ -41,5 +41,6 @@ public class dbtest {
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
+		return;
 	}
 }
