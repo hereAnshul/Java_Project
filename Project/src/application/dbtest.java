@@ -1,6 +1,5 @@
 package application;
 import java.sql.*;
-import javafx.application.*;
 
 public class dbtest {
 	public static void main(String[] args) {
@@ -42,6 +41,5 @@ public class dbtest {
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
-		Application.launch(Thank.class);
 	}
 }

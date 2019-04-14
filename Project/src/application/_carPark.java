@@ -58,17 +58,20 @@ public class _carPark extends Application{
 								c.setText("Select one spot");
 						}
 				});
+				GridPane.setHalignment(subbtn, HPos.CENTER);
 				Button bckbtn = new Button("Back");
 				bckbtn.setOnAction(e -> {
 					Main mn = new Main();
 					mn.start(primaryStage);
 				});
+				GridPane.setHalignment(bckbtn, HPos.CENTER);
 				Button rstbtn = new Button("Reset Form");
 				rstbtn.setOnAction(e -> {
 				    //NOTHING IS HERE...
 					name.setText("");
 					num.setText("");
 				});
+				GridPane.setHalignment(rstbtn, HPos.CENTER);
 				ToggleGroup group = new ToggleGroup();
 
 				RadioButton rb1 = new RadioButton("C101");

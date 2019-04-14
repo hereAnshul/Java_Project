@@ -50,6 +50,8 @@ public class _bikePark extends Application{
 					System.out.println(np);
 					if(s!=null && nm!=null && np!=null) 
 						dbtest.update(s, "car", nm, np);
+						Thank th = new Thank();
+						th.start(primaryStage);
 					if(nm==null) {
 							a.setText("Add name.");					
 					}if(np==null) {
@@ -57,18 +59,21 @@ public class _bikePark extends Application{
 					}if(s==null) {
 							c.setText("Select one spot");
 					}
-			});
+				});
+				GridPane.setHalignment(subbtn, HPos.CENTER);
 				Button bckbtn = new Button("Back");
 				bckbtn.setOnAction(e -> {
 					Main mn = new Main();
 					mn.start(primaryStage);
 				});
+				GridPane.setHalignment(bckbtn, HPos.CENTER);
 				Button rstbtn = new Button("Reset Form");
 				rstbtn.setOnAction(e -> {
 				    //NOTHING IS HERE...
 					name.setText("");
 					num.setText("");
 				});
+				GridPane.setHalignment(rstbtn, HPos.CENTER);
 				ToggleGroup group = new ToggleGroup();
 
 				RadioButton rb1 = new RadioButton("B101");
@@ -92,12 +97,12 @@ public class _bikePark extends Application{
 				RadioButton rb5 = new RadioButton("B105");
 				rb5.setUserData("B103");
 				rb5.setToggleGroup(group);
-				GridPane.setHalignment(rb4, HPos.CENTER);
+				GridPane.setHalignment(rb5, HPos.CENTER);
 
 				RadioButton rb6 = new RadioButton("B106");
 				rb6.setUserData("B103");
 				rb6.setToggleGroup(group);
-				GridPane.setHalignment(rb4, HPos.CENTER);
+				GridPane.setHalignment(rb6, HPos.CENTER);
 				
 				RadioButton rb7 = new RadioButton("B107");
 				rb7.setUserData("B103");
