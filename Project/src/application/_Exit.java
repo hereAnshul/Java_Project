@@ -1,6 +1,7 @@
 package application;
 	
 import javafx.application.Application;
+import javafx.geometry.HPos;
 import javafx.geometry.Pos;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
@@ -48,14 +49,17 @@ public class _Exit extends Application {
 			type.getItems().addAll("car", "bike");
 			Scene scene = new Scene(root,800,600);
 			root.add(extbtn, 1, 7);
+			GridPane.setHalignment(extbtn, HPos.CENTER);
 			root.add(spotLabel, 0, 3);
 			root.add(spotCode, 1, 3);
 			root.add(numPlate, 0, 5);
 			root.add(num, 1, 5);
 			root.add(vtype, 0, 6);
 			root.add(type, 1, 6);
+			GridPane.setHalignment(type, HPos.CENTER);
 			root.add(cost, 1, 8);
 			root.add(py, 1, 10);
+			GridPane.setHalignment(py, HPos.CENTER);
 			root.setHgap(10);
 			root.setVgap(20);
 			root.setAlignment(Pos.CENTER);

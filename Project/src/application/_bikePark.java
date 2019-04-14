@@ -24,7 +24,7 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
-import java.util.regex.Pattern;
+
 public class _bikePark extends Application{
 	String s, nm, np;
 	TextField name;
@@ -48,8 +48,15 @@ public class _bikePark extends Application{
 				subbtn.setOnAction(e -> {
 					nm = name.getText();
 					np = num.getText();
+					if(nm==null) {
+						a.setText("Add name.");					
+					}if(np==null) {
+						b.setText("Cant left blank");
+					}if(s==null) {
+						c.setText("Select one spot");
+					}
 					String pattern = "[a-zA-Z][a-zA-Z][0-9][0-9][a-zA-Z][a-zA-Z][0-9][0-9][0-9][0-9]";
-					boolean result = Pattern.matches(pattern,np);	
+					boolean result = Pattern.matches(pattern,np);
 					System.out.println(nm);
 					System.out.println(np);
 					if(s!=null && nm!=null && np!=null) { 
@@ -57,16 +64,9 @@ public class _bikePark extends Application{
 						Thank th = new Thank();
 						th.start(primaryStage);
 					}
-					if(nm==null) {
-							a.setText("Add name.");					
-					}if(np==null) {
-							b.setText("Cant left blank");
-					}if(s==null) {
-							c.setText("Select one spot");
-					}
 					if(result == false) {
-						c.setText("Invalid Format");
-							}
+							b.setText("Invalid Format");
+					}
 				});
 				GridPane.setHalignment(subbtn, HPos.CENTER);
 				Button bckbtn = new Button("Back");
@@ -78,8 +78,11 @@ public class _bikePark extends Application{
 				Button rstbtn = new Button("Reset Form");
 				rstbtn.setOnAction(e -> {
 				    //NOTHING IS HERE...
-					name.setText("");
-					num.setText("");
+					name.setText(null);
+					num.setText(null);
+					a.setText(null);
+					b.setText(null);
+					c.setText(null);	
 				});
 				GridPane.setHalignment(rstbtn, HPos.CENTER);
 				ToggleGroup group = new ToggleGroup();
@@ -130,21 +133,24 @@ public class _bikePark extends Application{
 		                RadioButton rb = (RadioButton)group.getSelectedToggle(); 		  
 		                if (rb != null) { 
 		                    s = rb.getText();  
+		                    c.setText(null);
 		                    System.out.println(s);
 		                } 
 		            } 
 		        }); 
 				
 				Text nameLabel = new Text("Name: ");
-				name = new TextField();
+				name = new TextField(null);
 				Text numPlate = new Text("Number Plate: ");
-				num = new TextField();
+				num = new TextField(null);
 				
 				Scene scene = new Scene(root, 800, 600);
 				root.add(nameLabel, 0, 3);
 				root.add(numPlate, 0, 4);
 				root.add(name, 1, 3);
+				root.add(a, 2, 3);
 				root.add(num, 1, 4);
+				root.add(b, 2, 4);
 				root.add(rstbtn, 1, 5);
 				root.add(rb1, 0, 6);
 				root.add(rb2, 0, 7);
@@ -155,8 +161,9 @@ public class _bikePark extends Application{
 				root.add(rb7, 2, 6);
 				root.add(rb8, 2, 7);
 				root.add(rb9, 2, 8);
-				root.add(subbtn, 1, 9);
-				root.add(bckbtn, 1, 10);
+				root.add(c, 1, 9);
+				root.add(subbtn, 1, 10);
+				root.add(bckbtn, 1, 11);
 				root.setHgap(10);
 				root.setVgap(20);
 				root.setAlignment(Pos.CENTER);

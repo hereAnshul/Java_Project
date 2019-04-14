@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.regex.Pattern;
 
 import javafx.application.Application;
 import javafx.beans.value.*;
@@ -22,7 +23,7 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
-import java.util.regex.Pattern;
+
 public class _carPark extends Application{
 		String s, nm, np;
 		TextField name;
@@ -47,30 +48,24 @@ public class _carPark extends Application{
 				subbtn.setOnAction(e -> {
 						nm = name.getText();
 						np = num.getText();
+						if(np==null) {
+							b.setText("Cant left blank");
+						}if(nm==null) {
+							a.setText("Add name.");					
+						}if(s==null) {
+							c.setText("Select one spot");
+						}
 						String pattern = "[a-zA-Z][a-zA-Z][0-9][0-9][a-zA-Z][a-zA-Z][0-9][0-9][0-9][0-9]";
-						boolean result = Pattern.matches(pattern,np);	
+						boolean result = Pattern.matches(pattern, np);
 						System.out.println(nm);
 						System.out.println(np);
-						if(s!=null && nm!=null && np!=null) {
+						if(s!=null && nm!=null && np!=null && result==true) {
 							dbtest.update(s, "car", nm, np);
 							Thank th = new Thank();
 							th.start(primaryStage);
 						}
-						if(nm==null)
-						{
-								a.setText("Add name.");					
-						}
-						if(np==null)
-						{
-								b.setText("Cant left blank");
-						}
-						if(s==null)
-						{
-								c.setText("Select one spot");
-						}
-						if(result == false)
-						{
-							c.setText("Invalid Foramt");
+						if(result == false) {
+								b.setText("Invalid Format");
 						}
 				});
 				GridPane.setHalignment(subbtn, HPos.CENTER);
@@ -85,6 +80,9 @@ public class _carPark extends Application{
 				    //NOTHING IS HERE...
 					name.setText(null);
 					num.setText(null);
+					a.setText(null);
+					b.setText(null);
+					c.setText(null);
 				});
 				GridPane.setHalignment(rstbtn, HPos.CENTER);
 				ToggleGroup group = new ToggleGroup();
@@ -134,18 +132,16 @@ public class _carPark extends Application{
 		            { 
 		                RadioButton rb = (RadioButton)group.getSelectedToggle(); 		  
 		                if (rb != null) { 
-		                    s = rb.getText();  
+		                    s = rb.getText();
+		                    c.setText(null);
 		                    System.out.println(s);
 		                } 
 		            } 
 		        }); 
 				
 				Text nameLabel = new Text("Name: ");
-				//Takes name of person
 				name = new TextField(null);
 				Text numPlate = new Text("Number Plate: ");
-				//Takes  number plate
-				//Add Pattern matching here....
 				num = new TextField(null);
 				
 				Scene scene = new Scene(root, 800, 600);
