@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.regex.Pattern;
 
 import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
@@ -23,7 +24,7 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
-
+import java.util.regex.Pattern;
 public class _bikePark extends Application{
 	String s, nm, np;
 	TextField name;
@@ -47,6 +48,8 @@ public class _bikePark extends Application{
 				subbtn.setOnAction(e -> {
 					nm = name.getText();
 					np = num.getText();
+					String pattern = "[a-zA-Z][a-zA-Z][0-9][0-9][a-zA-Z][a-zA-Z][0-9][0-9][0-9][0-9]";
+					boolean result = Pattern.matches(pattern,np);	
 					System.out.println(nm);
 					System.out.println(np);
 					if(s!=null && nm!=null && np!=null) { 
@@ -61,6 +64,9 @@ public class _bikePark extends Application{
 					}if(s==null) {
 							c.setText("Select one spot");
 					}
+					if(result == false) {
+						c.setText("Invalid Format");
+							}
 				});
 				GridPane.setHalignment(subbtn, HPos.CENTER);
 				Button bckbtn = new Button("Back");

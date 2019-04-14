@@ -22,7 +22,7 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
-
+import java.util.regex.Pattern;
 public class _carPark extends Application{
 		String s, nm, np;
 		TextField name;
@@ -47,6 +47,8 @@ public class _carPark extends Application{
 				subbtn.setOnAction(e -> {
 						nm = name.getText();
 						np = num.getText();
+						String pattern = "[a-zA-Z][a-zA-Z][0-9][0-9][a-zA-Z][a-zA-Z][0-9][0-9][0-9][0-9]";
+						boolean result = Pattern.matches(pattern,np);	
 						System.out.println(nm);
 						System.out.println(np);
 						if(s!=null && nm!=null && np!=null) {
@@ -54,12 +56,21 @@ public class _carPark extends Application{
 							Thank th = new Thank();
 							th.start(primaryStage);
 						}
-						if(nm==null) {
+						if(nm==null)
+						{
 								a.setText("Add name.");					
-						}if(np==null) {
+						}
+						if(np==null)
+						{
 								b.setText("Cant left blank");
-						}if(s==null) {
+						}
+						if(s==null)
+						{
 								c.setText("Select one spot");
+						}
+						if(result == false)
+						{
+							c.setText("Invalid Foramt");
 						}
 				});
 				GridPane.setHalignment(subbtn, HPos.CENTER);
