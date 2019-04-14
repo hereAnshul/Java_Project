@@ -8,12 +8,13 @@ import java.sql.Statement;
 
 import javafx.application.Application;
 import javafx.beans.value.*;
+import javafx.geometry.HPos;
 import javafx.geometry.Pos;
 import javafx.stage.Stage;
-import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -21,7 +22,6 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
-import javafx.event.EventHandler;
 
 public class _carPark extends Application{
 		String s, nm, np;
@@ -31,14 +31,32 @@ public class _carPark extends Application{
 		public void start(Stage primaryStage) {
 			try {
 				GridPane root = new GridPane();
+				
 				root.setId("pane");
+				Label c = new Label();
+				Label a = new Label();
+				Label b = new Label();
+				a.setTextFill(Color.RED);
+				b.setTextFill(Color.RED);
+				c.setTextFill(Color.RED);
+				a.setFont(new Font(11));
+				b.setFont(new Font(11));
+				b.setFont(new Font(11));
 				Button subbtn = new Button("Confirm Spot");
 				subbtn.setOnAction(e -> {
-					nm = name.getText();
-					np = num.getText();
-					System.out.println(nm);
-					System.out.println(np);
-					dbtest.update(s, "car", nm, np);
+						nm = name.getText();
+						np = num.getText();
+						System.out.println(nm);
+						System.out.println(np);
+						if(s!=null && nm!=null && np!=null) 
+							dbtest.update(s, "car", nm, np);
+						if(nm==null) {
+								a.setText("Add name.");					
+						}if(np==null) {
+								b.setText("Cant left blank");
+						}if(s==null) {
+								c.setText("Select one spot");
+						}
 				});
 				Button bckbtn = new Button("Back");
 				bckbtn.setOnAction(e -> {
@@ -69,14 +87,17 @@ public class _carPark extends Application{
 				RadioButton rb4 = new RadioButton("C104");
 				rb4.setUserData("C103");
 				rb4.setToggleGroup(group);
-
+				GridPane.setHalignment(rb4, HPos.CENTER);
+				
 				RadioButton rb5 = new RadioButton("C105");
 				rb5.setUserData("C103");
 				rb5.setToggleGroup(group);
-
+				GridPane.setHalignment(rb5, HPos.CENTER);
+				
 				RadioButton rb6 = new RadioButton("C106");
 				rb6.setUserData("C103");
 				rb6.setToggleGroup(group);
+				GridPane.setHalignment(rb6, HPos.CENTER);
 				
 				RadioButton rb7 = new RadioButton("C107");
 				rb7.setUserData("C103");
@@ -103,15 +124,20 @@ public class _carPark extends Application{
 		        }); 
 				
 				Text nameLabel = new Text("Name: ");
-				name = new TextField();
+				//Takes name of person
+				name = new TextField(null);
 				Text numPlate = new Text("Number Plate: ");
-				num = new TextField();
+				//Takes  number plate
+				//Add Pattern matching here....
+				num = new TextField(null);
 				
 				Scene scene = new Scene(root, 800, 600);
 				root.add(nameLabel, 0, 3);
 				root.add(numPlate, 0, 4);
 				root.add(name, 1, 3);
+				root.add(a, 2, 3);
 				root.add(num, 1, 4);
+				root.add(b, 2, 4);
 				root.add(rstbtn, 1, 5);
 				root.add(rb1, 0, 6);
 				root.add(rb2, 0, 7);
@@ -122,8 +148,9 @@ public class _carPark extends Application{
 				root.add(rb7, 2, 6);
 				root.add(rb8, 2, 7);
 				root.add(rb9, 2, 8);
-				root.add(subbtn, 1, 9);
-				root.add(bckbtn, 1, 10);
+				root.add(c, 1, 9);
+				root.add(subbtn, 1, 10);
+				root.add(bckbtn, 1, 11);
 				root.setHgap(10);
 				root.setVgap(20);
 				root.setAlignment(Pos.CENTER);

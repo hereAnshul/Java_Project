@@ -1,10 +1,11 @@
 package application;
 import java.sql.*;
+import javafx.application.*;
 
 public class dbtest {
 	public static void main(String[] args) {
 		System.out.println("Processing...");
-		//update();
+		update(null, null, null, null);
 	}
 	public static void update(String a, String b, String c, String d) {
 		Connection con=null;
@@ -17,8 +18,6 @@ public class dbtest {
 			final String DB_URL = "jdbc:mysql://127.0.0.1:3306/javaproj";
 			con = DriverManager.getConnection(DB_URL, USER, PASS);
 			stmt = con.createStatement();
-			//_carPark cp = new _carPark();
-			//String SPOT = cp.getSpot();
 			String SPOT = a;
 			String NAME = c;
 			String NUMP = d;
@@ -43,5 +42,6 @@ public class dbtest {
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
+		Application.launch(Thank.class);
 	}
 }

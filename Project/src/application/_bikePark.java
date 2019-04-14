@@ -9,18 +9,20 @@ import java.sql.Statement;
 import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.geometry.HPos;
 import javafx.geometry.Pos;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
-import javafx.event.EventHandler;
 
 public class _bikePark extends Application{
 	String s, nm, np;
@@ -31,14 +33,31 @@ public class _bikePark extends Application{
 			try {
 				GridPane root = new GridPane();
 				root.setId("pane");
+				Label c = new Label();
+				Label a = new Label();
+				Label b = new Label();
+				a.setTextFill(Color.RED);
+				b.setTextFill(Color.RED);
+				c.setTextFill(Color.RED);
+				a.setFont(new Font(11));
+				b.setFont(new Font(11));
+				b.setFont(new Font(11));
 				Button subbtn = new Button("Confirm Spot");
 				subbtn.setOnAction(e -> {
 					nm = name.getText();
 					np = num.getText();
 					System.out.println(nm);
 					System.out.println(np);
-					dbtest.update(s, "bike", nm, np);
-				});
+					if(s!=null && nm!=null && np!=null) 
+						dbtest.update(s, "car", nm, np);
+					if(nm==null) {
+							a.setText("Add name.");					
+					}if(np==null) {
+							b.setText("Cant left blank");
+					}if(s==null) {
+							c.setText("Select one spot");
+					}
+			});
 				Button bckbtn = new Button("Back");
 				bckbtn.setOnAction(e -> {
 					Main mn = new Main();
@@ -68,14 +87,17 @@ public class _bikePark extends Application{
 				RadioButton rb4 = new RadioButton("B104");
 				rb4.setUserData("B103");
 				rb4.setToggleGroup(group);
+				GridPane.setHalignment(rb4, HPos.CENTER);
 
 				RadioButton rb5 = new RadioButton("B105");
 				rb5.setUserData("B103");
 				rb5.setToggleGroup(group);
+				GridPane.setHalignment(rb4, HPos.CENTER);
 
 				RadioButton rb6 = new RadioButton("B106");
 				rb6.setUserData("B103");
 				rb6.setToggleGroup(group);
+				GridPane.setHalignment(rb4, HPos.CENTER);
 				
 				RadioButton rb7 = new RadioButton("B107");
 				rb7.setUserData("B103");

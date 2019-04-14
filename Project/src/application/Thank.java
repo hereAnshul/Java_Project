@@ -1,33 +1,32 @@
 package application;
 	
 import javafx.application.Application;
+import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
 import javafx.stage.Stage;
+import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.layout.GridPane;
+import javafx.scene.layout.FlowPane;
+import javafx.scene.text.Text;
 import javafx.scene.control.Button;
 
-public class Main extends Application {
+public class Thank extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			GridPane root = new GridPane();
+			FlowPane root = new FlowPane();
 			root.setId("pane");
-			Button car_btn = new Button("4-Wheeler");
-			car_btn.setOnAction(e -> {
+			Button btn = new Button("Home");
+			btn.setOnAction(e -> {
 			    //NOTHING IS HERE...
-				_carPark cp = new _carPark();
-				cp.start(primaryStage);
-			});
-			Button bike_btn = new Button("2-Wheeler");
-			bike_btn.setOnAction(e -> {
-			    //NOTHING IS HERE...
-				_bikePark bp = new _bikePark();
-				bp.start(primaryStage);
+				Main mn = new Main();
+				mn.start(primaryStage);
 			});
 			Scene scene = new Scene(root,800,600);
-			root.addRow(0, car_btn);
-			root.addRow(1, bike_btn);
+			Text label = new Text("THANK YOU");
+			Text label1 = new Text("DO VISIT AGAIN");
+			ObservableList<Node> list = root.getChildren();
+			list.addAll(label, label1, btn);
 			root.setHgap(10);
 			root.setVgap(20);
 			root.setAlignment(Pos.CENTER);
